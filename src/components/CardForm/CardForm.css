@@ -1,0 +1,47 @@
+.card-form.MuiPaper-root.MuiCard-root {
+  display: flex;
+  flex-direction: column;
+  max-width: 41rem;
+  margin-top: 5rem;
+  padding: 2rem;
+  border: none;
+  gap: 1rem;
+  background: var(--background-start-hex);
+  color: var(--font-color);
+}
+
+.card-form {
+  .card-title {
+    padding-left: 1rem;
+    font-size: 2rem;
+    font-weight: 900;
+    max-width: 19rem;
+  }
+
+  .card-subtitle {
+    padding-left: 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    max-width: 19rem;
+  }
+
+  .card-form-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    padding-top: 3rem;
+    gap: 1rem;
+  }
+}
+
+.spinner {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #ffff;
+  border-radius: 50%;
+  animation: spin 0.8s ease-in-out infinite;
+}

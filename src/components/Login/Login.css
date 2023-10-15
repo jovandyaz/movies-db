@@ -1,0 +1,13 @@
+.login-form {
+  & .MuiFormControlLabel-label {
+    font-style: italic;
+  }
+  & .MuiButtonBase-root.MuiCheckbox-root {
+    color: var(--background-end-hex);
+  }
+
+  .terms-checkbox {
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+  }
+}
