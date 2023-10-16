@@ -10,6 +10,11 @@ const handleRequestResponse = (response: AxiosResponse) => {
 };
 
 const handleRequestError = (error: AxiosError) => {
+  if (error.response) {
+    const { data } = error.response;
+    const errorMessage = (data as { status_message: string }).status_message;
+    return Promise.reject(new Error(errorMessage));
+  }
   return Promise.reject(error);
 };
 

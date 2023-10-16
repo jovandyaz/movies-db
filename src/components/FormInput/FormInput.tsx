@@ -11,7 +11,7 @@ interface FormInputProps {
   indication?: string;
   warning?: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmit?: () => Promise<void>;
+  onSubmit?: () => void | Promise<void>;
 }
 
 export const FormInput = ({

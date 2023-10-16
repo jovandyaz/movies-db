@@ -1,31 +1,34 @@
-import "../styles/globals.css";
-import { Suspense } from "react";
+import "../global/styles/globals.css";
 import type { Metadata } from "next";
+import { ReactNode, Suspense } from "react";
 import { Navbar, ThemeRegistry } from "@/components";
+import { StoreProvider } from "@/store/StoreProvider";
 
 export const metadata: Metadata = {
   title: "TMDB",
   description: "Movies Catalogue",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <html lang="en">
       <body>
-        <ThemeRegistry options={{ key: "mui" }}>
-          {
-            <>
-              <Navbar />
-              <Suspense>
-                <main>{children}</main>
-              </Suspense>
-            </>
-          }
-        </ThemeRegistry>
+        <StoreProvider>
+          <ThemeRegistry options={{ key: "mui" }}>
+            {
+              <>
+                <Navbar />
+                <Suspense>
+                  <main>{children}</main>
+                </Suspense>
+              </>
+            }
+          </ThemeRegistry>
+        </StoreProvider>
       </body>
     </html>
   );

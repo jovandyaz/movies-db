@@ -1,4 +1,4 @@
 export const appRoutes = {
   home: "/",
-  movies: "/movies",
+  catalogue: "/catalogue",
 };

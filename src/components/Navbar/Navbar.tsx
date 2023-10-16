@@ -2,7 +2,7 @@ import "./Navbar.css";
 import { Box, Toolbar, AppBar } from "@mui/material";
 import Image from "next/image";
 import { HiOutlineUserCircle } from "react-icons/hi";
-import DaCodesLogo from "../../../public/assets/DacodesLogo2.svg";
+import DaCodesLogo from "../../assets/DaCodesLogo2.svg";
 
 export const Navbar = (): JSX.Element => {
   return (
@@ -14,7 +14,7 @@ export const Navbar = (): JSX.Element => {
           alt="DaCodes Logo"
           priority={true}
         />
-        <Box className="nav-login">
+        <Box className="nav-profile">
           <HiOutlineUserCircle size={44} strokeWidth={1} />
         </Box>
       </Toolbar>

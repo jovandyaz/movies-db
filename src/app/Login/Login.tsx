@@ -1,8 +1,11 @@
 "use client";
 
 import "./Login.css";
-import { useCallback, useEffect, useState } from "react";
-import client from "@/services/client";
+import { ReactElement, useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
+import { useAppDispatch, useAppSelector } from "@/store/appHooks";
+import { authUser } from "@/store/thunks/authThunk";
 import {
   Box,
   Checkbox,
@@ -11,8 +14,8 @@ import {
   InputAdornment,
 } from "@mui/material";
 import { MdOutlineVisibility, MdOutlineVisibilityOff } from "react-icons/md";
-import toast, { Toaster } from "react-hot-toast";
-import { CardForm, FormInput } from "..";
+import { CardForm, FormInput } from "../../components";
+import { appRoutes } from "@/paths.routes";
 import {
   EmailSchemaType,
   PasswordSchemaType,
@@ -20,7 +23,12 @@ import {
   passwordSchema,
 } from "./login.schema";
 
-export const Login = () => {
+export const Login = (): ReactElement => {
+  const dispatch = useAppDispatch();
+  const { isLoading, isAuthenticated, errorMessage } = useAppSelector(
+    (state) => state.auth
+  );
+  const router = useRouter();
   const [email, setEmail] = useState<EmailSchemaType>("");
   const [emailError, setEmailError] = useState<string>("");
   const [password, setPassword] = useState<PasswordSchemaType>("");
@@ -28,7 +36,6 @@ export const Login = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [termsChecked, setTermsChecked] = useState<boolean>(false);
   const [isFormCompleted, setIsFormCompleted] = useState<boolean>(false);
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const validateEmail = emailSchema.safeParse(email);
   const validatePassword = passwordSchema.safeParse(password);
@@ -71,24 +78,18 @@ export const Login = () => {
     }
   }, [email, validateForm, password, termsChecked]);
 
-  const handleSubmit = async () => {
-    try {
-      setIsSubmitting(true);
-      const response = await client.get("/authentication/guest_session/new");
-
-      if (response.success) {
-        setIsSubmitting(false);
-        toast.success("¡Bienvenido!");
-      }
-    } catch (error) {
-      toast.error("Algo salió mal. Por favor, intenta de nuevo.");
-      setIsSubmitting(false);
-    }
+  const handleSubmit = () => {
+    dispatch(authUser());
   };
 
   useEffect(() => {
     checkIsFormCompleted();
-  }, [checkIsFormCompleted]);
+    if (isAuthenticated) {
+      router.push(appRoutes.catalogue);
+    } else if (errorMessage) {
+      toast.error(errorMessage);
+    }
+  }, [checkIsFormCompleted, errorMessage, isAuthenticated, router]);
 
   const eyeIcon = (
     <InputAdornment position="end">
@@ -105,7 +106,7 @@ export const Login = () => {
         subtitle="¡Bienvenido!"
         buttonMessage="Iniciar sesión"
         disabledButton={!isFormCompleted}
-        isSubmitting={isSubmitting}
+        isSubmitting={isLoading}
         onActionButton={handleSubmit}
       >
         <>

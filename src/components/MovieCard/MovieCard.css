@@ -1,0 +1,40 @@
+.movie-card.MuiPaper-root.MuiCard-root {
+  border-radius: var(--border-radius);
+  background: var(--background-start-hex);
+  color: var(--font-color);
+  margin: auto;
+}
+
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 253px;
+  height: 367px;
+  overflow: hidden;
+
+  .movie-card__details {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+    margin: auto 1rem;
+    gap: 1rem;
+  }
+
+  .movie-card__poster {
+    position: absolute;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+  }
+
+  .movie-card__poster:hover {
+    filter: opacity(0.5);
+  }
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}

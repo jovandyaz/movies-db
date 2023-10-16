@@ -1,0 +1,17 @@
+.catalogue-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--background-start-hex);
+  padding-top: 5rem;
+  color: var(--font-color);
+
+  .catalogue__movies {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    width: 100%;
+    column-gap: 1rem;
+    row-gap: 3rem;
+  }
+}
