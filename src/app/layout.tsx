@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ReactNode, Suspense } from "react";
 import { Navbar, ThemeRegistry } from "@/components";
 import { StoreProvider } from "@/store/StoreProvider";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "TMDB",
@@ -23,7 +24,10 @@ export default async function RootLayout({
               <>
                 <Navbar />
                 <Suspense>
-                  <main>{children}</main>
+                  <main>
+                    {children}
+                    <Analytics />
+                  </main>
                 </Suspense>
               </>
             }

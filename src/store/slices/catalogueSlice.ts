@@ -1,3 +1,4 @@
+import { nowPlayingUri } from "@/services/urls";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface CatalogueState {
@@ -5,7 +6,7 @@ interface CatalogueState {
 }
 
 const initialState: CatalogueState = {
-  catalogueTopic: "",
+  catalogueTopic: nowPlayingUri,
 };
 
 const catalogueSlice = createSlice({
