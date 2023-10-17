@@ -1,12 +1,12 @@
 import "./page.css";
 import { Topics } from "./Topics";
-import { NowPlaying } from "./NowPlaying";
+import { Catalogue } from "./Catalogue";
 
 const cataloguePage = () => {
   return (
     <section className="catalogue-container">
       <Topics />
-      <NowPlaying />
+      <Catalogue />
     </section>
   );
 };

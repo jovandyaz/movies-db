@@ -15,3 +15,8 @@
 .custom-button.MuiButtonBase-root.Mui-disabled {
   background: var(--background-gray);
 }
+
+.custom-button.MuiButtonBase-root.topics__button--active {
+  background: var(--background-end-hex);
+  cursor: default;
+}

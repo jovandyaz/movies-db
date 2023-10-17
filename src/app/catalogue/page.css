@@ -1,6 +1,7 @@
 .catalogue-container {
   display: flex;
   flex-direction: column;
+  min-width: 100%;
   min-height: 100vh;
   background: var(--background-start-hex);
   padding-top: 5rem;
